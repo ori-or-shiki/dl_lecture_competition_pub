@@ -15,8 +15,11 @@ class BasicConvClassifier(nn.Module):
         super().__init__()
 
         self.blocks = nn.Sequential(
-            ConvBlock(in_channels, hid_dim),
-            ConvBlock(hid_dim, hid_dim),
+            ConvBlock(in_channels, 200),
+            ConvBlock(200, 100),
+            ConvBlock(100, 50),
+            ConvBlock(50, 100),
+            ConvBlock(100, hid_dim),
         )
 
         self.head = nn.Sequential(
@@ -42,7 +45,7 @@ class ConvBlock(nn.Module):
         self,
         in_dim,
         out_dim,
-        kernel_size: int = 3,
+        kernel_size: int = 19,
         p_drop: float = 0.1,
     ) -> None:
         super().__init__()
